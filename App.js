@@ -1,21 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import { ThemeProvider } from "styled-components/native";
+import {
+  useFonts as useOswaldFonts,
+  Oswald_400Regular,
+  Oswald_500Medium,
+  Oswald_700Bold,
+} from "@expo-google-fonts/oswald";
+import {
+  useFonts as useLatoFonts,
+  Lato_400Regular,
+  Lato_700Bold,
+} from "@expo-google-fonts/lato";
+import { NavigationContainer } from "@react-navigation/native";
 
-export default function App() {
+import MyTabs from "./src/navigation/MyTabs.navigation";
+
+import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationProvider } from "./src/services/location/location.context";
+
+import { theme } from "./src/infrastructure/theme";
+
+const App = () => {
+  const [oswaldLoaded] = useOswaldFonts({
+    Oswald_400Regular,
+    Oswald_500Medium,
+    Oswald_700Bold,
+  });
+  const [latoLoaded] = useLatoFonts({
+    Lato_400Regular,
+    Lato_700Bold,
+  });
+
+  if (!oswaldLoaded || !latoLoaded) return null;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <ThemeProvider theme={theme}>
+        <LocationProvider>
+          <RestaurantsContextProvider>
+            <NavigationContainer>
+              <MyTabs />
+            </NavigationContainer>
+          </RestaurantsContextProvider>
+        </LocationProvider>
+      </ThemeProvider>
+      <ExpoStatusBar style="auto" />
+    </>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
