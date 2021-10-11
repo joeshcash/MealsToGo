@@ -14,7 +14,7 @@ import {
 } from "@expo-google-fonts/lato";
 import { NavigationContainer } from "@react-navigation/native";
 
-import MyTabs from "./src/navigation/MyTabs.navigation";
+import Navigation from "./src/navigation";
 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationProvider } from "./src/services/location/location.context";
@@ -40,7 +40,7 @@ const App = () => {
         <LocationProvider>
           <RestaurantsContextProvider>
             <NavigationContainer>
-              <MyTabs />
+              <Navigation />
             </NavigationContainer>
           </RestaurantsContextProvider>
         </LocationProvider>

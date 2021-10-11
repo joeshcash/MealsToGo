@@ -4,6 +4,10 @@ import styled from "styled-components/native";
 
 const RestaurantSearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  top: 40px;
 `;
 
 const SearchBar = ({ onSearch, searchTerm }) => {
@@ -24,6 +28,7 @@ const SearchBar = ({ onSearch, searchTerm }) => {
           setSearchKeyword(text);
         }}
         value={searchKeyword}
+        icon="map"
       />
     </RestaurantSearchContainer>
   );

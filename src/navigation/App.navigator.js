@@ -4,9 +4,9 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { TAB_ICON } from "../config/constants";
 
-import RestaurantScreen from "../features/restaurants/screens/restaurants.screen";
-import SettingsScreen from "../features/restaurants/screens/settings.screen";
-import MapScreen from "../features/restaurants/screens/map.screen";
+import RestaurantsNavigator from "./Restaurants.navigator";
+import MapNavigator from "./Map.navigator";
+import SettingsNavigator from "./SettingsNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +23,7 @@ const createScreenOptions = ({ route }) => {
   };
 };
 
-const MyTabs = () => {
+const AppNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={createScreenOptions}
@@ -33,11 +33,11 @@ const MyTabs = () => {
         keyboardHidesTabBar: true,
       }}
     >
-      <Tab.Screen name="Restaurants" component={RestaurantScreen} />
-      <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+      <Tab.Screen name="Map" component={MapNavigator} />
+      <Tab.Screen name="Settings" component={SettingsNavigator} />
     </Tab.Navigator>
   );
 };
 
-export default MyTabs;
+export default AppNavigator;
