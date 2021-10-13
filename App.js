@@ -17,7 +17,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import Navigation from "./src/navigation";
 
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationProvider } from "./src/services/location/location.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
+import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
 import { theme } from "./src/infrastructure/theme";
 
@@ -37,13 +38,15 @@ const App = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationProvider>
-          <RestaurantsContextProvider>
-            <NavigationContainer>
-              <Navigation />
-            </NavigationContainer>
-          </RestaurantsContextProvider>
-        </LocationProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <NavigationContainer>
+                <Navigation />
+              </NavigationContainer>
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

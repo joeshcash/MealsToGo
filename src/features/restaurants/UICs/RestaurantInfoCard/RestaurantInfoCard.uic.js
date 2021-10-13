@@ -6,6 +6,7 @@ import open from "../../../../../assets/open";
 
 import Spacer from "../../../../components/Spacer/Spacer.component";
 import Text from "../../../../components/Typography/Text.component";
+import Favourite from "../../../../components/Favourite/Favourite.component";
 
 import {
   Address,
@@ -18,7 +19,11 @@ import {
   Icon,
 } from "./RestaurantInfoCard.styles";
 
-const RestaurantInfoCard = ({ restaurant = {} }) => {
+const RestaurantInfoCard = ({
+  restaurant = {},
+  isFavourite,
+  handleFavourite,
+}) => {
   const {
     name = " Some Restaurant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
@@ -35,6 +40,7 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <CardContainer elevation={5}>
+      <Favourite item={restaurant} />
       <Cover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
