@@ -1,4 +1,10 @@
-import React, { useState, createContext, useEffect, useContext } from "react";
+import React, {
+  useState,
+  createContext,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 
 import { restaurantRequest, restaurantTransform } from "./restaurants.service";
 
@@ -13,20 +19,7 @@ export const RestaurantsContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      if (location) {
-        const locationString = `${location.lat},${location.lng}`;
-        retrieveRestaurants(locationString);
-      } else {
-        retrieveRestaurants(location);
-      }
-    }, 2000);
-  }, [location]);
-
-  const retrieveRestaurants = (locationString) => {
+  const retrieveRestaurants = useCallback((locationString) => {
     setRestaurants([]);
 
     restaurantRequest(locationString)
@@ -36,10 +29,27 @@ export const RestaurantsContextProvider = ({ children }) => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setIsLoading(false);
-        setRestaurants([]);
+        noResults();
         setError(err);
       });
+  }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      if (location) {
+        const locationString = `${location.lat},${location.lng}`;
+        retrieveRestaurants(locationString);
+      } else {
+        noResults();
+      }
+    }, 2000);
+  }, [location, retrieveRestaurants]);
+
+  const noResults = () => {
+    setIsLoading(false);
+    setRestaurants([]);
   };
 
   return (

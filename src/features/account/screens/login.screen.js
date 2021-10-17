@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
@@ -18,7 +18,12 @@ import {
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin, error } = useContext(AuthenticationContext);
+
+  const { onLogin, setError, error } = useContext(AuthenticationContext);
+
+  useEffect(() => {
+    if (error) setError(null);
+  }, []);
 
   return (
     <AccountBackground>
@@ -41,10 +46,10 @@ const LoginScreen = ({ navigation }) => {
             textContentType="password"
             autoCapitalize="none"
             secureTextEntry
-            secure
             onChangeText={(text) => setPassword(text)}
           />
         </Spacer>
+
         {error && (
           <ErrorContainer size="large">
             <Text variant="error">{error}</Text>
