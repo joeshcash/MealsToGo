@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { ActivityIndicator, Colors } from "react-native-paper";
 
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
@@ -20,7 +21,9 @@ const RegisterScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { onRegister, error, setError } = useContext(AuthenticationContext);
+  const { onRegister, error, isLoading, setError } = useContext(
+    AuthenticationContext
+  );
 
   useEffect(() => {
     if (error) setError(null);
@@ -69,13 +72,17 @@ const RegisterScreen = ({ navigation }) => {
         )}
 
         <Spacer size="large">
-          <AuthButton
-            icon="email"
-            mode="contained"
-            onPress={() => onRegister(email, password, confirmPassword)}
-          >
-            Register
-          </AuthButton>
+          {!isLoading ? (
+            <AuthButton
+              icon="email"
+              mode="contained"
+              onPress={() => onRegister(email, password, confirmPassword)}
+            >
+              Register
+            </AuthButton>
+          ) : (
+            <ActivityIndicator animating={true} color={Colors.blue300} />
+          )}
         </Spacer>
       </AccountContainer>
       <Spacer size="large">
