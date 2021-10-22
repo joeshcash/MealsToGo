@@ -5,7 +5,3 @@ export const loginRequest = (email, password) =>
 
 export const registerRequest = (email, password) =>
   firebase.auth().createUserWithEmailAndPassword(email, password);
-
-export const onAuthStateChanged = () => firebase.auth().onAuthStateChanged;
-
-export const authLogout = () => firebase.auth().signOut;

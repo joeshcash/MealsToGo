@@ -10,7 +10,7 @@ import { FavouritesContextProvider } from "../services/favourites/favourites.con
 
 import RestaurantsNavigator from "./Restaurants.navigator";
 import MapNavigator from "./Map.navigator";
-import SettingsNavigator from "./SettingsNavigator";
+import SettingsNavigator from "./Settings.navigator";
 
 const Tab = createBottomTabNavigator();
 
