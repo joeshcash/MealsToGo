@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { Button, TextInput } from "react-native-paper";
 
-import { colors } from "../../infrastructure/theme/colors";
+import { colors } from "../../theme/colors";
 
 import Text from "../../components/Typography/Text.component";
 

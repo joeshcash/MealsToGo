@@ -15,8 +15,8 @@ import {
 import * as firebase from "firebase";
 
 import Navigation from "./src/navigation";
+import { theme } from "./src/theme";
 
-import { theme } from "./src/infrastructure/theme";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 // Initialize Firebase
