@@ -5,6 +5,8 @@ import styled from "styled-components/native";
 import { LocationContext } from "../../../services/location/location.context";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
+import SafeArea from "../../../components/utils/SafeArea.component";
+
 import MapCallout from "../UICs/MapCallout.uic";
 import SearchBar from "../UICs/SearchBar.uic";
 
@@ -13,7 +15,7 @@ const Map = styled(MapView)`
   width: 100%;
 `;
 
-const MapScreen = ({ navigation }) => {
+const RestaurantMap = ({ navigation }) => {
   const { onSearch, searchTerm, location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
 
@@ -63,6 +65,23 @@ const MapScreen = ({ navigation }) => {
       </Map>
     </>
   );
+};
+
+const MapScreen = ({ navigation }) => {
+  const { location } = useContext(LocationContext);
+
+  if (!location) {
+    return (
+      <Map
+        region={{
+          latitude: 0,
+          longitude: 0,
+        }}
+      />
+    );
+  }
+
+  return <RestaurantMap navigation={navigation} />;
 };
 
 export default MapScreen;

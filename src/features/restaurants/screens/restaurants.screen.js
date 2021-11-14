@@ -7,6 +7,7 @@ import SearchBar from "../UICs/SearchBar.uic";
 import RestaurantInfoCard from "../UICs/RestaurantInfoCard/RestaurantInfoCard.uic";
 
 import Spacer from "../../../components/Spacer/Spacer.component";
+import Text from "../../../components/Typography/Text.component";
 import SafeArea from "../../../components/utils/SafeArea.component";
 import FavouriteBar from "../../../components/Favourite/FavouriteBar.component";
 
@@ -28,13 +29,19 @@ const LoadingContainer = styled.View`
 `;
 
 const RestaurantsScreen = ({ navigation }) => {
-  const { restaurants, isLoading } = useContext(RestaurantsContext);
-  const { onSearch, searchTerm } = useContext(LocationContext);
+  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
+  const {
+    onSearch,
+    searchTerm,
+    errorSearch: locationError,
+  } = useContext(LocationContext);
   const { favourites } = useContext(FavouritesContext);
 
   const favouritesArray = Object.keys(favourites).map((key) => favourites[key]);
 
   const [isToggled, setIsToggled] = useState(false);
+
+  const hasError = (!!error || !!locationError) && !isLoading;
 
   return (
     <SafeArea>
@@ -50,6 +57,12 @@ const RestaurantsScreen = ({ navigation }) => {
           favourites={favouritesArray}
           onNavigate={navigation.navigate}
         />
+      )}
+
+      {hasError && (
+        <Spacer position="left" size="large">
+          <Text variant="error">Something went wrong retrieving the datas</Text>
+        </Spacer>
       )}
 
       {isLoading ? (
