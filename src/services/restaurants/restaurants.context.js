@@ -37,14 +37,12 @@ export const RestaurantsContextProvider = ({ children }) => {
   useEffect(() => {
     setIsLoading(true);
 
-    setTimeout(() => {
-      if (location) {
-        const locationString = `${location.lat},${location.lng}`;
-        retrieveRestaurants(locationString);
-      } else {
-        noResults();
-      }
-    }, 2000);
+    if (location) {
+      const locationString = `${location.lat},${location.lng}`;
+      retrieveRestaurants(locationString);
+    } else {
+      noResults();
+    }
   }, [location, retrieveRestaurants]);
 
   const noResults = () => {
