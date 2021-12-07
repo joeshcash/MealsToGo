@@ -11,11 +11,11 @@ export const FavouritesContextProvider = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
 
   useEffect(() => {
-    if (user) loadFavourites(user.uid);
+    if (user && user.uid) loadFavourites(user.uid);
   }, [user]);
 
   useEffect(() => {
-    if (user) saveFavourites(favourites, user.uid);
+    if (user && user.uid) saveFavourites(favourites, user.uid);
   }, [favourites, user]);
 
   const add = (restaurant) => {

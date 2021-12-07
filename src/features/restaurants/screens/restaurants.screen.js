@@ -15,7 +15,7 @@ import { RestaurantsContext } from "../../../services/restaurants/restaurants.co
 import { LocationContext } from "../../../services/location/location.context";
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
 
-import { RestaurantList } from "../RestaurantList.styles";
+import { RestaurantList } from "../restaurants.styles";
 import FadeInView from "../../../components/Animations/fade.animation";
 
 const Loading = styled(ActivityIndicator)`

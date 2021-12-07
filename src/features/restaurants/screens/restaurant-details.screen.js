@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { List } from "react-native-paper";
 import { ScrollView } from "react-native";
 
+import { CartContext } from "../../../services/cart/cart.context";
+
+import Spacer from "../../../components/Spacer/Spacer.component";
+
 import RestaurantInfoCard from "../UICs/RestaurantInfoCard/RestaurantInfoCard.uic";
 
-const RestaurantDetailsScreen = ({ route }) => {
+import { OrderBottom } from "../restaurants.styles";
+
+const RestaurantDetailsScreen = ({ navigation, route }) => {
   const [breakfastExpanded, setBreakfastExpanded] = useState(false);
   const [lunchExpanded, setLunchExpanded] = useState(false);
   const [dinnerExpanded, setDinnerExpanded] = useState(false);
   const [drinksExpanded, setDrinksExpanded] = useState(false);
 
   const { restaurant } = route.params;
+
+  const { addToCart } = useContext(CartContext);
 
   return (
     <>
@@ -58,6 +66,18 @@ const RestaurantDetailsScreen = ({ route }) => {
           <List.Item title="Fanta" />
         </List.Accordion>
       </ScrollView>
+      <Spacer position="bottom" size="large">
+        <OrderBottom
+          icon="cash-usd"
+          mode="contained"
+          onPress={() => {
+            addToCart({ item: "special", price: 1299 }, restaurant);
+            navigation.navigate("Checkout");
+          }}
+        >
+          Order Special Only 12.99!
+        </OrderBottom>
+      </Spacer>
     </>
   );
 };

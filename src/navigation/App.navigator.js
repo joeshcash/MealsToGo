@@ -7,10 +7,13 @@ import { TAB_ICON } from "../config/constants";
 import { RestaurantsContextProvider } from "../services/restaurants/restaurants.context";
 import { LocationContextProvider } from "../services/location/location.context";
 import { FavouritesContextProvider } from "../services/favourites/favourites.context";
+import { CartContextProvider } from "../services/cart/cart.context";
 
 import RestaurantsNavigator from "./Restaurants.navigator";
-import MapNavigator from "./Map.navigator";
 import SettingsNavigator from "./Settings.navigator";
+import CheckoutNavigator from "./Checkout.navigator";
+
+import MapScreen from "../features/map/screens/map.screen";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,18 +35,21 @@ const AppNavigator = () => {
     <FavouritesContextProvider>
       <LocationContextProvider>
         <RestaurantsContextProvider>
-          <Tab.Navigator
-            screenOptions={createScreenOptions}
-            tabBarOptions={{
-              activeTintColor: "tomato",
-              inactiveTintColor: "gray",
-              keyboardHidesTabBar: true,
-            }}
-          >
-            <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-            <Tab.Screen name="Map" component={MapNavigator} />
-            <Tab.Screen name="Settings" component={SettingsNavigator} />
-          </Tab.Navigator>
+          <CartContextProvider>
+            <Tab.Navigator
+              screenOptions={createScreenOptions}
+              tabBarOptions={{
+                activeTintColor: "tomato",
+                inactiveTintColor: "gray",
+                keyboardHidesTabBar: true,
+              }}
+            >
+              <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+              <Tab.Screen name="Checkout" component={CheckoutNavigator} />
+              <Tab.Screen name="Map" component={MapScreen} />
+              <Tab.Screen name="Settings" component={SettingsNavigator} />
+            </Tab.Navigator>
+          </CartContextProvider>
         </RestaurantsContextProvider>
       </LocationContextProvider>
     </FavouritesContextProvider>

@@ -10,7 +10,7 @@ import Spacer from "../../../components/Spacer/Spacer.component";
 
 import RestaurantInfoCard from "../../restaurants/UICs/RestaurantInfoCard/RestaurantInfoCard.uic";
 
-import { RestaurantList } from "../../restaurants/RestaurantList.styles";
+import { RestaurantList } from "../../restaurants/restaurants.styles";
 
 const NoFavouritesArea = styled(SafeArea)`
   align-items: center;
