@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { List } from "react-native-paper";
+import { List, Divider } from "react-native-paper";
 import { ScrollView } from "react-native";
 
 import { CartContext } from "../../../services/cart/cart.context";
@@ -33,6 +33,7 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
           <List.Item title="Eggs Benedict" />
           <List.Item title="Classic Breakfast" />
         </List.Accordion>
+        <Divider />
         <List.Accordion
           title="Lunch"
           left={(props) => <List.Icon {...props} icon="hamburger" />}
@@ -43,6 +44,7 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
           <List.Item title="Steak Sandwich" />
           <List.Item title="Mushroom Soup" />
         </List.Accordion>
+        <Divider />
         <List.Accordion
           title="Dinner"
           left={(props) => <List.Icon {...props} icon="food-variant" />}
@@ -53,6 +55,7 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
           <List.Item title="Veal Cutlet with Chicken Mushroom Rotini" />
           <List.Item title="Steak Frites" />
         </List.Accordion>
+        <Divider />
         <List.Accordion
           title="Drinks"
           left={(props) => <List.Icon {...props} icon="cup" />}

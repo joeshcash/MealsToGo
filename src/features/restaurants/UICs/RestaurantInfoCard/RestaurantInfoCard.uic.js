@@ -19,11 +19,7 @@ import {
   Icon,
 } from "./RestaurantInfoCard.styles";
 
-const RestaurantInfoCard = ({
-  restaurant = {},
-  isFavourite,
-  handleFavourite,
-}) => {
+const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = " Some Restaurant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
@@ -39,7 +35,7 @@ const RestaurantInfoCard = ({
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
-    <CardContainer elevation={5}>
+    <CardContainer elevation={2}>
       <Favourite item={restaurant} />
       <Cover key={name} source={{ uri: photos[0] }} />
       <Info>

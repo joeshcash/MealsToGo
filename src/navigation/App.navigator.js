@@ -4,6 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { TAB_ICON } from "../config/constants";
 
+import { colors } from "../theme/colors";
+
 import { RestaurantsContextProvider } from "../services/restaurants/restaurants.context";
 import { LocationContextProvider } from "../services/location/location.context";
 import { FavouritesContextProvider } from "../services/favourites/favourites.context";
@@ -39,8 +41,8 @@ const AppNavigator = () => {
             <Tab.Navigator
               screenOptions={createScreenOptions}
               tabBarOptions={{
-                activeTintColor: "tomato",
-                inactiveTintColor: "gray",
+                activeTintColor: colors.brand.primary,
+                inactiveTintColor: colors.brand.muted,
                 keyboardHidesTabBar: true,
               }}
             >
