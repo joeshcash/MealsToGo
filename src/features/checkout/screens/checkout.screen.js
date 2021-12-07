@@ -40,7 +40,7 @@ const CheckoutScreen = ({ navigation }) => {
     setIsLoading(true);
 
     payRequest(card.id, sum, name)
-      .then((result) => {
+      .then(() => {
         setIsLoading(false);
         clearCart();
 
@@ -80,7 +80,7 @@ const CheckoutScreen = ({ navigation }) => {
               <List.Item key={idx} title={`${item} - ${price / 100}`} />
             ))}
           </List.Section>
-          <Text>Total: {sum}</Text>
+          <Text>Total: {sum / 100}</Text>
         </Spacer>
         <NameInput
           label="Name"

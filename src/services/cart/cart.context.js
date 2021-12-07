@@ -24,7 +24,7 @@ export const CartContextProvider = ({ children }) => {
     if (!cart.length) {
       setSum(0);
     } else {
-      setSum(cart.reduce((acc, { price }) => (acc += price / 100), 0));
+      setSum(cart.reduce((acc, { price }) => (acc += price), 0));
     }
   }, [cart]);
 
